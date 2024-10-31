@@ -22,7 +22,7 @@ const Introduction = () => {
           <Typewriter
             onInit={(typewriter) => {
               typewriter// eslint-disable-next-line react/no-unescaped-entities
-              .typeString('Benjamin Leyton’s Portfolio 🧑🏽‍💻')
+              .typeString('Benjamin Leyton 🧑🏽‍💻')
               
                 .callFunction(() => {
                   typewriter.stop();
