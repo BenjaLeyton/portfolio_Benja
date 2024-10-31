@@ -8,9 +8,19 @@ import Typewriter from 'typewriter-effect';
 import { buttonVariants } from "./ui/button";
 import Container from "./shared/container";
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 const Introduction = () => {
-  const { theme } = useTheme();
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Para asegurarse de que el tema esté montado correctamente
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Determinar el tema actual
+  const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
     <Container>
@@ -21,13 +31,12 @@ const Introduction = () => {
         <h1 className="text-5xl font-bold mb-4">
           <Typewriter
             onInit={(typewriter) => {
-              typewriter// eslint-disable-next-line react/no-unescaped-entities
-              .typeString('Benjamin Leyton 🧑🏽‍💻')
-              
-                .callFunction(() => {
-                  typewriter.stop();
-                })
-                .start();
+              typewriter
+              .typeString('Benjamin Leyton🧑🏽‍💻')
+              .callFunction(() => {
+                typewriter.stop();
+              })
+              .start();
             }}
             options={{
               cursor: '|',
@@ -57,12 +66,14 @@ const Introduction = () => {
         </div>
       </div>
       <div className="mt-6">
-        <Image
-          src={theme === 'dark' ? '/degrade_benja.png' : '/benjaCHILL2.png'}
-          alt="Profile pic"
-          width={600}
-          height={600}
-        />
+        {mounted && (
+          <Image
+            src={currentTheme === 'dark' ? '/degrade_benja.png' : '/benjaCHILL2.png'}
+            alt="Profile pic"
+            width={600}
+            height={600}
+          />
+        )}
       </div>
     </Container>
   );
