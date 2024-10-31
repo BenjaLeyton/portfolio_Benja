@@ -10,14 +10,14 @@ export async function POST(req: Request) {
     try {
       const data = await resend.emails.send({
         from: "Acme <onboarding@resend.dev>",
-        to: ["rafatarre@gmail.com"],
-        subject: "Tarredev landing",
+        to: ["benjamin.leyton@uc.cl"],
+        subject: "Nuevo mensaje desde tu sitio web",
         react: EmailTemplate({
           firstName: dataForm.username,
           message: dataForm.message,
           email: dataForm.email,
         }),
-        text: "Tarredev",
+        text: "Hola",
       });
       return Response.json(data);
     } catch (error) {
@@ -27,3 +27,5 @@ export async function POST(req: Request) {
     return Response.json({ error });
   }
 }
+
+//re_KjMmNY2k_KwnVeJaBkhFtiG347q1qcTpq

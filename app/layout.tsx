@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
 
 const urbanist = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Tarredev YT",
-  description: "Landing Page by TarreDev",
+  title: "Benjamin Leyton",
+  description: "Landing Page by Benjamin Leyton",
 };
 
 export default function RootLayout({
@@ -20,7 +24,7 @@ export default function RootLayout({
       <body className={urbanist.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

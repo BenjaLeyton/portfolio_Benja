@@ -62,6 +62,7 @@ const Carousel = React.forwardRef<
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
+        loop: true,
       },
       plugins
     )
@@ -84,6 +85,19 @@ const Carousel = React.forwardRef<
     const scrollNext = React.useCallback(() => {
       api?.scrollNext()
     }, [api])
+    
+    // Rotación automática cada 5 segundos
+    React.useEffect(() => {
+      if (!api) return;
+
+      const interval = setInterval(() => {
+        scrollNext();
+      }, 5000); // Cambia cada 5 segundos
+
+      return () => {
+        clearInterval(interval); // Limpia el intervalo cuando se desmonta el componente
+      };
+    }, [api, scrollNext]);
 
     const handleKeyDown = React.useCallback(
       (event: React.KeyboardEvent<HTMLDivElement>) => {
