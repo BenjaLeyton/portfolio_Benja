@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import Link from "next/link";
@@ -20,8 +21,9 @@ const Introduction = () => {
         <h1 className="text-5xl font-bold mb-4">
           <Typewriter
             onInit={(typewriter) => {
-              typewriter
-              .typeString("Benjamin Leyton🧑🏽‍💻")
+              typewriter// eslint-disable-next-line react/no-unescaped-entities
+              .typeString('Benjamin Leyton’s Portfolio 🧑🏽‍💻')
+              
                 .callFunction(() => {
                   typewriter.stop();
                 })
