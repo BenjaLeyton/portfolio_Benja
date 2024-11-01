@@ -32,7 +32,7 @@ const Introduction = () => {
           <Typewriter
             onInit={(typewriter) => {
               typewriter
-              .typeString('Benjamin Leyton🧑🏽‍💻')
+              .typeString('Benjamin Leyton')
               .callFunction(() => {
                 typewriter.stop();
               })

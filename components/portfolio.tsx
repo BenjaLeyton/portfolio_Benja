@@ -70,11 +70,8 @@ const Portfolio = () => {
                         />
                         <h3 className="text-xl mb-2 mt-2 text-white text-center">{data.title}</h3>
                         
-                        {/* Descripción y botones de Demo y Presentación */}
+                        {/* Botones de Demo y Presentación y descripción */}
                         <div className="overflow-hidden max-h-0 opacity-0 transition-all duration-300 group-hover:max-h-screen group-hover:opacity-100">
-                            <p className="text-white mt-2">
-                                {data.description}
-                            </p>
                             {data.urlDemo && (
                                 <button
                                     className="w-full text-center flex items-center justify-center bg-[#3B82F6] text-white font-medium py-2 px-6 rounded-lg shadow-md transition-all duration-300 mt-4"
@@ -109,6 +106,9 @@ const Portfolio = () => {
                                     </svg>
                                 </a>
                             )}
+                            <p className="text-white mt-2">
+                                {data.description}
+                            </p>
                         </div>
                     </div>
                 ))}
