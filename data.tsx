@@ -143,6 +143,17 @@ export const dataPortfolio = [
         description: "Modelo predictivo de accidentes con XGBoost para controlar riesgos críticos, categorías de accidentes y gerencias involucradas. La implementación en Streamlit permite una visualización interactiva de los resultados, facilitando simulaciones de escenarios 'what-if' en tiempo real. Las tablas resumen presentan probabilidades de accidentes y riesgos críticos, ayudando a una gestión proactiva de la seguridad mediante una interpretación clara y accesible de los datos.",
         presentation: "",
     },
+    {
+        id: 8,
+        title: "Recolección de vidrio Padigreen",
+        image: "/logo_padigren.png",
+        category: "web",
+        urlGithub: "",
+        urlDemo: "/padigreen.mp4",
+        description: "Aplicación web para la gestión de recolección de vidrio en locales de Santiago. La plataforma permite a los locales comerciales reportar contenedores llenos y a los administradores gestionar los tickets de recolección de manera eficiente. Está construida con Next.js utilizando API Routes para el manejo del backend, junto con Prisma y PostgreSQL para la gestión de datos. El diseño se realizó con Tailwind CSS. La autenticación se implementa mediante JWT, asegurando seguridad y accesibilidad para ambos tipos de usuarios. Se mantiene un código limpio y consistente utilizando ESLint y Prettier, y se optimizan los estilos con PostCSS. La gestión de dependencias se realiza con npm, facilitando el desarrollo y despliegue del proyecto.",
+        presentation: "",
+    },
+    
 ];
 
 
