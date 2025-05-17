@@ -4,7 +4,6 @@ import { useState } from "react";
 import Navbar from "@/components/navbar";
 import Introduction from "@/components/introduction";
 import AboutMe from "@/components/about-me";
-import Experience from "@/components/experience";
 import Services from "@/components/services";
 import Portfolio from "@/components/portfolio";
 import Contact from "@/components/contact";
