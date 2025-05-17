@@ -1,135 +1,151 @@
+"use client";
+
 import { useState } from "react";
 import { dataPortfolio } from "@/data";
 import Title from "./shared/title";
 import Image from "next/image";
-import Link from "next/link";
-import { buttonVariants } from "./ui/button";
+
+const tabs = [
+  { key: "web", label: "Desarrollo Web" },
+  { key: "automations", label: "Automatizaciones" },
+  { key: "data_analyst", label: "Análisis de Datos" },
+  { key: "data_science", label: "Ciencia de Datos" },
+];
 
 const Portfolio = () => {
-    const [activeTab, setActiveTab] = useState("web");
-    const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState("web");
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [openId, setOpenId] = useState<number | null>(null);          // ← nuevo
 
-    // Filtrar proyectos según la pestaña activa
-    const filteredProjects = dataPortfolio.filter(data => data.category === activeTab);
+  const filtered = dataPortfolio.filter((p) => p.category === activeTab);
 
-    // Función para abrir el modal con el video o presentación
-    const openVideoModal = (url: string) => {
-        setVideoUrl(url);
-    };
+  const toggleMobile = (id: number) => {
+    // sólo actúa en pantallas < md (ancho < 768)
+    if (window.innerWidth < 768) {
+      setOpenId(openId === id ? null : id);
+    }
+  };
 
-    // Función para cerrar el modal
-    const closeVideoModal = () => {
-        setVideoUrl(null);
-    };
+  return (
+    <section id="portfolio" className="p-6 md:px-60 md:py-12 w-11/12 mx-auto">
+      <Title title="Portfolio" subtitle="Trabajos recientes 💼" />
 
-    return (
-        <div className="p-6 md:px-60 md:py-12 w-11/12 mx-auto" id="portfolio">
-            <Title title="Portfolio" subtitle="Trabajos recientes 💼" />
-
-            {/* Controles de Tabs */}
-            <div className="flex justify-center mt-8 mb-8 space-x-4">
-                <button
-                    onClick={() => setActiveTab("web")}
-                    className={`px-6 py-2 rounded-full transition-colors duration-200 ${activeTab === "web" ? "bg-blue-500 text-white" : "bg-gray-300 text-black"}`}
-                >
-                    Desarrollo Web
-                </button>
-                <button
-                    onClick={() => setActiveTab("automations")}
-                    className={`px-6 py-2 rounded-full transition-colors duration-200 ${activeTab === "automations" ? "bg-blue-500 text-white" : "bg-gray-300 text-black"}`}
-                >
-                    Automatizaciones
-                </button>
-                <button
-                    onClick={() => setActiveTab("data_analyst")}
-                    className={`px-6 py-2 rounded-full transition-colors duration-200 ${activeTab === "data_analyst" ? "bg-blue-500 text-white" : "bg-gray-300 text-black"}`}
-                >
-                    Análisis de Datos
-                </button>
-                <button
-                    onClick={() => setActiveTab("data_science")}
-                    className={`px-6 py-2 rounded-full transition-colors duration-200 ${activeTab === "data_science" ? "bg-blue-500 text-white" : "bg-gray-300 text-black"}`}
-                >
-                    Ciencia de Datos
-                </button>
-            </div>
-
-            {/* Sección de Proyectos */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 auto-cols-fr gap-1 mt-2 auto-rows-min items-start">
-                {filteredProjects.slice(0, 6).map((data) => (
-                    <div
-                        key={data.id}
-                        className="group bg-gray-800 p-2 rounded-lg shadow-lg transform transition-all duration-300 relative w-full max-w-[400px] border-2 border-transparent hover:border-blue-500 hover:shadow-[0_0_15px_rgba(0,123,255,0.7)] hover:bg-blue-700 hover:bg-opacity-30"
-                    >
-                        <Image
-                            src={data.image}
-                            alt="Image"
-                            width={300}
-                            height={200}
-                            className="rounded-md w-full h-auto transition-none"
-                        />
-                        <h3 className="text-xl mb-2 mt-2 text-white text-center">{data.title}</h3>
-                        
-                        {/* Botones de Demo y Presentación y descripción */}
-                        <div className="overflow-hidden max-h-0 opacity-0 transition-all duration-300 group-hover:max-h-screen group-hover:opacity-100">
-                            {data.urlDemo && (
-                                <button
-                                    className="w-full text-center flex items-center justify-center bg-[#3B82F6] text-white font-medium py-2 px-6 rounded-lg shadow-md transition-all duration-300 mt-4"
-                                    onClick={() => openVideoModal(data.urlDemo)}
-                                >
-                                    <span className="mr-2">Demo</span>
-                                    <svg
-                                        className="w-5 h-5"
-                                        fill="currentColor"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                </button>
-                            )}
-                            {data.presentation && (
-                                <a
-                                    href={data.presentation} // Enlace de descarga
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-full text-center flex items-center justify-center bg-[#10B981] text-white font-medium py-2 px-6 rounded-lg shadow-md transition-all duration-300 mt-4"
-                                >
-                                    <span className="mr-2">Presentación</span>
-                                    <svg
-                                        className="w-5 h-5"
-                                        fill="currentColor"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                </a>
-                            )}
-                            <p className="text-white mt-2">
-                                {data.description}
-                            </p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Modal de Video/Presentación */}
-            {videoUrl && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
-                    <div className="relative w-full max-w-6xl">
-                        <button onClick={closeVideoModal} className="absolute top-4 right-4 text-white text-2xl font-bold z-50 bg-gray-700 rounded-full p-2 hover:bg-gray-600">
-                            ✕
-                        </button>
-                        <video controls className="w-full h-auto rounded-lg" autoPlay>
-                            <source src={videoUrl} type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            )}
+      {/* ---------- TABS ---------- */}
+      <div className="-mx-4 md:mx-0 mt-8 mb-8 overflow-x-auto md:overflow-visible">
+        <div className="flex md:justify-center space-x-4 px-4 md:px-0">
+          {tabs.map((t) => (
+            <button
+              key={t.key}
+              onClick={() => {
+                setActiveTab(t.key);
+                setOpenId(null);           // reset detalles al cambiar pestaña
+              }}
+              className={`flex-shrink-0 px-6 py-2 rounded-full whitespace-nowrap transition-colors
+                ${
+                  activeTab === t.key
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-300 text-black"
+                }`}
+            >
+              {t.label}
+            </button>
+          ))}
         </div>
-    );
-}
+      </div>
+
+      {/* ---------- GRID ---------- */}
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start">
+        {filtered.slice(0, 6).map((card) => (
+          <div
+            key={card.id}
+            onClick={() => toggleMobile(card.id)}                 // ← abre/cierra en mobile
+            className="
+              group relative w-full max-w-[400px] mx-auto
+              bg-gray-800 p-2 rounded-lg shadow-lg border-2 border-transparent
+              hover:border-blue-500 hover:shadow-[0_0_15px_rgba(0,123,255,0.7)]
+              hover:bg-blue-700/30 transition cursor-pointer
+            "
+          >
+            <Image
+              src={card.image}
+              alt={card.title}
+              width={300}
+              height={200}
+              className="w-full h-auto rounded-md"
+            />
+            <h3 className="text-xl mt-2 mb-2 text-white text-center">
+              {card.title}
+            </h3>
+
+            {/* ---- DETALLE ---- */}
+            <div
+              className={`
+                text-white mt-2
+                overflow-hidden transition-all duration-300
+                ${
+                  // mobile abre con click
+                  openId === card.id ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+                }
+                /* desktop abre con hover */
+                md:max-h-0 md:opacity-0
+                md:group-hover:max-h-screen md:group-hover:opacity-100
+              `}
+            >
+              {card.urlDemo && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();     // evita toggle adicional
+                    setVideoUrl(card.urlDemo!);
+                  }}
+                  className="w-full flex justify-center items-center bg-[#3B82F6] text-white font-medium py-2 px-6 rounded-lg shadow-md mt-4"
+                >
+                  Demo
+                  <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </button>
+              )}
+
+              {card.presentation && (
+                <a
+                  href={card.presentation}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-full flex justify-center items-center bg-[#10B981] text-white font-medium py-2 px-6 rounded-lg shadow-md mt-4"
+                >
+                  Presentación
+                  <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </a>
+              )}
+
+              <p className="mt-2">{card.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* ---------- MODAL VIDEO ---------- */}
+      {videoUrl && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75">
+          <div className="relative w-full max-w-6xl">
+            <button
+              onClick={() => setVideoUrl(null)}
+              className="absolute top-4 right-4 z-50 bg-gray-700 text-white text-2xl rounded-full p-2 hover:bg-gray-600"
+            >
+              &times;
+            </button>
+            <video controls autoPlay className="w-full rounded-lg">
+              <source src={videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
 
 export default Portfolio;

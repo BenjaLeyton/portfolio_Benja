@@ -1,99 +1,115 @@
-"use client"
+"use client";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import { serviceData } from '@/data';
-import { useState } from 'react';
-import Title from "./shared/title";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import { serviceData } from "@/data";
+import { useState } from "react";
 import Link from "next/link";
-import { buttonVariants } from "./ui/button"; // Importa buttonVariants
+import { buttonVariants } from "./ui/button";
+import Title from "./shared/title";
 
 const Services = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
   const closeModal = () => setActiveIndex(null);
 
   return (
-    <div className="p-6 md:px-40 md:py-24 w-full" id="services">
-      <div className="grid items-center justify-items-center h-full gap-12 md:grid-cols-2">
-        {/* Contenedor de Texto */}
-        <div className="max-w-[650px] mx-auto text-center md:text-left">
-          <h1 className="text-4xl leading-tight text-center md:text-left md:text-6xl md:mb-5 text-black dark:text-white">
-            Mis <span className="font-bold text-blue-500 dark:text-white-300"> servicios.</span>
-          </h1>
-          <p className="mb-6 text-2xl text-gray-700 dark:text-gray-300">
-            Como desarrollador full stack, analista de datos y científico de datos, ofrezco soluciones completas en la creación de plataformas web, automatización de procesos y análisis avanzado de datos. Me especializo en la creación de pipelines de datos eficientes, gestión de bases de datos, herramientas de análisis, y visualización de datos para generar insights que impulsen decisiones estratégicas. Además, he trabajado en la creación de modelos predictivos avanzados, ayudando a las empresas a optimizar su rendimiento y mejorar la toma de decisiones basadas en datos.
-          </p>
+    <section
+      id="services"
+      className="p-6 md:px-40 md:py-24 w-11/12 mx-auto"
+    >
+      <Title
+        title="Servicios"
+        subtitle="Lo que puedo hacer por ti 💡"
+      />
+    <div className="mb-8 md:mb-12"></div>
+      
 
-          <Link
-            href="#contact"
-            className={`${buttonVariants({ variant: "default" })} text-lg px-6 py-3 bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-600 dark:text-white`}
+      {/* GRID 1-col en móvil */}
+      <div className="block md:hidden grid grid-cols-1 gap-6">
+        {serviceData.map((item, i) => (
+          <div
+            key={i}
+            className="
+              flex flex-col items-center 
+              px-6 py-8 
+              bg-[rgba(65,47,123,0.15)] 
+              rounded-lg gap-4
+              shadow-sm
+            "
           >
-            Contacta conmigo
-          </Link>
-        </div>
-
-        {/* Contenedor del Slider */}
-        <div className="relative w-full flex justify-center">
-          <Swiper
-            breakpoints={{
-              320: {
-                slidesPerView: 1,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 10,
-              },
-            }}
-            freeMode={true}
-            pagination={{
-              clickable: true,
-              el: '.swiper-pagination',
-            }}
-            modules={[Pagination]}
-            className="h-[500px] md:h-[700px] w-full pb-16"
-          >
-            {serviceData.map((item, index) => (
-              <SwiperSlide key={index}>
-                <div className="flex flex-col px-8 py-10 h-auto min-h-[600px] w-full max-w-[450px] rounded-lg cursor-pointer bg-[rgba(65,47,123,0.15)] gap-6 group hover:bg-[rgba(89,65,169,0.15)] transition-all duration-300 hover:border-secondary border-2 mx-auto">
-                  <div className="mb-4 text-6xl text-secondary flex justify-center">
-                    {item.icon}
-                  </div>
-                  <div className="text-center md:text-left">
-                    <h3 className="mb-4 text-2xl font-bold">{item.title}</h3>
-                    <p className="text-lg">{item.description}</p>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <div className="swiper-pagination"></div>
-        </div>
+            <div className="text-5xl text-black dark:text-white mb-2">
+              {item.icon}
+            </div>
+            <h3 className="text-xl font-bold text-black dark:text-white text-center">
+              {item.title}
+            </h3>
+            <p className="text-base text-gray-700 dark:text-gray-300 text-center">
+              {item.description}
+            </p>
+          </div>
+        ))}
       </div>
 
-      {/* Modal para mostrar detalles */}
+      {/* SWIPER en md+ */}
+      <div className="hidden md:block">
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          breakpoints={{
+            768: { slidesPerView: 2, spaceBetween: 30 },
+            1024: { slidesPerView: 3, spaceBetween: 24 },
+          }}
+          className="w-full pb-12"
+        >
+          {serviceData.map((item, i) => (
+            <SwiperSlide key={i}>
+              <div
+                className="
+                  flex flex-col items-center justify-start 
+                  px-8 py-10 
+                  h-[380px] sm:h-[480px] md:h-[600px] 
+                  bg-[rgba(65,47,123,0.15)] 
+                  rounded-lg gap-6 shadow-sm
+                  transition hover:bg-[rgba(89,65,169,0.15)]
+                "
+              >
+                <div className="text-6xl text-black dark:text-white mb-2">
+                  {item.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-black dark:text-white text-center">
+                  {item.title}
+                </h3>
+                <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
+                  {item.description}
+                </p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="swiper-pagination mt-4" />
+      </div>
+
+      {/* Modal */}
       {activeIndex !== null && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-gray-300 dark:bg-gray-700 p-10 rounded-lg max-w-6xl w-[90%] h-[85vh] overflow-auto relative">
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg max-w-lg w-full p-6 overflow-auto relative shadow-lg">
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-3xl text-gray-600 dark:text-gray-200"
+              className="absolute top-4 right-4 text-2xl text-black dark:text-white"
             >
               &times;
             </button>
-            <h2 className="text-4xl font-bold mb-6">{serviceData[activeIndex].title}</h2>
-            <p className="text-xl leading-relaxed">{serviceData[activeIndex].detalles}</p>
+            <h2 className="text-2xl sm:text-4xl font-bold mb-4 text-black dark:text-white">
+              {serviceData[activeIndex].title}
+            </h2>
+            <p className="text-base sm:text-xl text-gray-700 dark:text-gray-300">
+              {serviceData[activeIndex].detalles}
+            </p>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
-}
+};
 
 export default Services;

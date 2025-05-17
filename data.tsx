@@ -1,25 +1,6 @@
 import { Atom, BellPlus, BookText, Briefcase, Brush, Code2, CodeSquare, Crop, Lightbulb, Pencil, Computer, Book, Rocket, Home, Inbox, Mail, PanelsTopLeft, Phone, Settings, Search, UserRound, UsersRound, Wrench, Workflow, Presentation } from "lucide-react";
 
-export const dataAboutMe = [
-    {
-        id: 1,
-        name: "Experiencia",
-        icon: <Briefcase />,
-        description: "+4 años de experiencia",
-    },
-    {
-        id: 2,
-        name: "Clientes",
-        icon: <UsersRound />,
-        description: "+200 clientes satisfechos",
-    },
-    {
-        id: 3,
-        name: "Proyectos",
-        icon: <Wrench />,
-        description: "+50 completados",
-    },
-];
+
 
 export const itemsNavbar = [
     {
@@ -157,80 +138,6 @@ export const dataPortfolio = [
 ];
 
 
-export const dataExperience = [
-    {
-        id: 1,
-        title: "Frontend Development  💄",
-        experience: [
-            {
-                name: "HTML",
-                subtitle: "Experimentado",
-                value: 80,
-            },
-            {
-                name: "CSS",
-                subtitle: "Intermedio",
-                value: 75,
-            },
-            {
-                name: "JavaScript",
-                subtitle: "Experimentado",
-                value: 60,
-            },
-            {
-                name: "Tailwind CSS",
-                subtitle: "Experimentado",
-                value: 30,
-            },
-            {
-                name: "React",
-                subtitle: "Experimentado",
-                value: 60,
-            },
-            {
-                name: "Bootstrap",
-                subtitle: "Basic",
-                value: 50,
-            },
-        ],
-    },
-    {
-        id: 2,
-        title: "Backend Development  🥷",
-        experience: [
-            {
-                name: "Node JS",
-                subtitle: "Experimentado",
-                value: 80,
-            },
-            {
-                name: "Mongo DB",
-                subtitle: "Intermedio",
-                value: 75,
-            },
-            {
-                name: "Python",
-                subtitle: "Basic",
-                value: 60,
-            },
-            {
-                name: "MySQL",
-                subtitle: "Experimentado",
-                value: 60,
-            },
-            {
-                name: "PHP",
-                subtitle: "Experimentado",
-                value: 60,
-            },
-            {
-                name: "Django",
-                subtitle: "Basic",
-                value: 60,
-            },
-        ],
-    },
-];
 
 
 export const serviceData = [
@@ -294,50 +201,5 @@ export const dataContact = [
         subtitle: "benjamin.leyton@uc.cl",
         link: "mailto:benjamin.leyton@uc.cl",
         icon: <Inbox />,
-    },
-];
-
-export const dataTestimonials = [
-    {
-        id: 1,
-        name: "George Snow",
-        description:
-            "¡Increíble plataforma! Los testimonios aquí son genuinos y me han ayudado a tomar decisiones informadas. ¡Altamente recomendado!",
-        imageUrl: "/profile-1.jpeg",
-    },
-    {
-        id: 2,
-        name: "Juan Pérez",
-        description:
-            "Me encanta la variedad de testimonios disponibles en esta página. Es inspirador ver cómo otras personas han superado desafíos similares a los míos. ¡Gracias por esta invaluable fuente de motivación!",
-        imageUrl: "/profile-2.jpeg",
-    },
-    {
-        id: 3,
-        name: "María García",
-        description:
-            "Excelente recurso para obtener opiniones auténticas sobre diferentes productos y servicios. Me ha ayudado mucho en mis compras en línea. ¡Bravo por este sitio!",
-        imageUrl: "/profile-3.jpeg",
-    },
-    {
-        id: 4,
-        name: "Laura Snow",
-        description:
-            "¡Qué descubrimiento tan fantástico! Los testimonios aquí son honestos y detallados. Me siento más seguro al tomar decisiones después de leer las experiencias compartidas por otros usuarios.",
-        imageUrl: "/profile-3.jpeg",
-    },
-    {
-        id: 5,
-        name: "Carlos Sánchez",
-        description:
-            "Una joya en la web. Los testimonios son fáciles de encontrar y están bien organizados. ¡Definitivamente mi destino número uno cuando necesito referencias confiables!",
-        imageUrl: "/profile-2.jpeg",
-    },
-    {
-        id: 6,
-        name: "Antonio Martínez",
-        description:
-            "¡Fantástico recurso para aquellos que buscan validación antes de tomar decisiones importantes! Los testimonios aquí son veraces y realmente útiles. ¡Gracias por simplificar mi proceso de toma de decisiones!",
-        imageUrl: "/profile-3.jpeg",
     },
 ];
