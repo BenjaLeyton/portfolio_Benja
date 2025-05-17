@@ -53,7 +53,7 @@ const AboutMe = () => {
 
         <div>
           <p className="my-8 text-base md:text-lg leading-relaxed">
-            ¡Hola! Mi nombre es Benjamin, tengo 25 años y soy un entusiasta del
+            ¡Hola! Mi nombre es Benjamin, un entusiasta del
             deporte y la tecnología. Me especializo en desarrollar herramientas
             que faciliten el trabajo y la vida de mis compañeros, amigos y
             clientes.
